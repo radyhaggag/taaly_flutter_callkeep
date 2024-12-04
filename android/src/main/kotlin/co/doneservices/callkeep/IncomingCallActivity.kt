@@ -165,7 +165,16 @@ class IncomingCallActivity : Activity() {
 
         tvCallerName.text = data?.getString(EXTRA_CALLKEEP_CALLER_NAME, "")
 
-        val avatarUrl = intent.extras?.getString(EXTRA_CALLKEEP_AVATAR)
+        var avatarUrl = data?.getString(EXTRA_CALLKEEP_AVATAR, "")
+        var backgroundImg = data?.getString(EXTRA_CALLKEEP_BACKGROUND_URL, "")
+        
+        if(avatarUrl.isNullOrEmpty()) {
+            avatarUrl = backgroundImg;
+        }
+        // for test
+        if(avatarUrl.isNullOrEmpty()) {
+            avatarUrl = "https://www.lifewire.com/thmb/rRKYYGdQN-TQX0U6TkGmsq0sbGA=/360x240/filters:no_upscale():max_bytes(150000):strip_icc()/photog-56e0b1355f9b5854a9f86481.jpg";
+        }
 
 
         if (!avatarUrl.isNullOrEmpty()) {
@@ -175,6 +184,7 @@ class IncomingCallActivity : Activity() {
                 .error(R.drawable.user_placeholder)
                 .into(callerImage);
         } else {
+            
             callerImage.setImageResource(R.drawable.user_placeholder) // Fallback if URL is empty
         }
 
