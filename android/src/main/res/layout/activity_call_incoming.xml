@@ -80,7 +80,7 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:background="@drawable/circular_accept"
-            android:src="@drawable/ic_accept"
+            android:src="@drawable/ic_video"
             android:contentDescription="@string/accept_text"
             android:padding="20dp" />
 

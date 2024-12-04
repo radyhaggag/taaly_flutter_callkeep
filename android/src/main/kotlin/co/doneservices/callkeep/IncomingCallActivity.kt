@@ -26,7 +26,6 @@ import co.doneservices.callkeep.CallKeepBroadcastReceiver.Companion.EXTRA_CALLKE
 import co.doneservices.callkeep.CallKeepBroadcastReceiver.Companion.EXTRA_CALLKEEP_CALLER_NAME
 import co.doneservices.callkeep.CallKeepBroadcastReceiver.Companion.EXTRA_CALLKEEP_HANDLE
 import co.doneservices.callkeep.CallKeepBroadcastReceiver.Companion.EXTRA_CALLKEEP_LOGO
-import co.doneservices.callkeep.CallKeepBroadcastReceiver.Companion.EXTRA_CALLKEEP_HAS_VIDEO
 import com.squareup.picasso.Picasso
 import kotlin.math.abs
 import okhttp3.OkHttpClient
@@ -161,11 +160,6 @@ class IncomingCallActivity : Activity() {
         textAnswer.text = data?.getString(EXTRA_CALLKEEP_ACCEPT_TEXT, "")
         textDecline.text = data?.getString(EXTRA_CALLKEEP_DECLINE_TEXT, "")
 
-        val hasVideo = data?.getBoolean(EXTRA_CALLKEEP_HAS_VIDEO, false) ?: false
-        if (hasVideo) {
-            val top = getResources().getDrawable(R.drawable.ic_video);
-            btnAnswer.setCompoundDrawablesWithIntrinsicBounds(null, top, null, null);
-        }
         val duration = data?.getLong(EXTRA_CALLKEEP_DURATION, 0L) ?: 0L
         wakeLockRequest(duration)
 

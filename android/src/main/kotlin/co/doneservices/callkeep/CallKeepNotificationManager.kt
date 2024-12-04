@@ -35,7 +35,6 @@ import co.doneservices.callkeep.CallKeepBroadcastReceiver.Companion.EXTRA_CALLKE
 import co.doneservices.callkeep.CallKeepBroadcastReceiver.Companion.EXTRA_CALLKEEP_CALLBACK_TEXT
 import co.doneservices.callkeep.CallKeepBroadcastReceiver.Companion.EXTRA_CALLKEEP_DECLINE_TEXT
 import co.doneservices.callkeep.CallKeepBroadcastReceiver.Companion.EXTRA_CALLKEEP_TEXT_MISSED_CALL
-import co.doneservices.callkeep.CallKeepBroadcastReceiver.Companion.EXTRA_CALLKEEP_HAS_VIDEO
 import com.squareup.picasso.OkHttp3Downloader
 import com.squareup.picasso.Picasso
 import com.squareup.picasso.Target
@@ -115,17 +114,9 @@ class CallKeepNotificationManager(private val context: Context) {
         )
         notificationBuilder.setContentIntent(getActivityPendingIntent(notificationId, data))
         notificationBuilder.setDeleteIntent(getTimeOutPendingIntent(notificationId, data))
-        val hasVideo = data.getBoolean(EXTRA_CALLKEEP_HAS_VIDEO, false)
         val notificationIcon = data.getString(EXTRA_CALLKEEP_NOTIFICATION_ICON, "")
         if (notificationIcon.isEmpty() || Build.VERSION.SDK_INT < Build.VERSION_CODES.M ) {
-            var smallIcon = context.applicationInfo.icon
-            if (hasVideo) {
-                smallIcon = R.drawable.ic_video
-            } else {
-                if (smallIcon >= 0) {
-                    smallIcon = R.drawable.ic_accept
-                }
-            }
+            var smallIcon = R.drawable.ic_video
             notificationBuilder.setSmallIcon(smallIcon)
         } else {
             val identifier = context.resources.getIdentifier(notificationIcon, "drawable", context.packageName)
@@ -156,7 +147,7 @@ class CallKeepNotificationManager(private val context: Context) {
         notificationBuilder.addAction(declineAction)
         val acceptText = data.getString(EXTRA_CALLKEEP_ACCEPT_TEXT, "")
         val acceptAction: NotificationCompat.Action = NotificationCompat.Action.Builder(
-                R.drawable.ic_accept,
+                R.drawable.ic_video,
                 if (TextUtils.isEmpty(declineText)) context.getString(R.string.accept_text) else acceptText,
                 getAcceptPendingIntent(notificationId, data)
         ).build()
@@ -174,19 +165,11 @@ class CallKeepNotificationManager(private val context: Context) {
                 data.getString(EXTRA_CALLKEEP_MISSED_CALL_NOTIFICATION_CHANNEL_NAME, "Missed Calls"),
         )
         val missedCallSound: Uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
-        val hasVideo = data.getBoolean(EXTRA_CALLKEEP_HAS_VIDEO, false)
         val notificationIcon = data.getString(EXTRA_CALLKEEP_NOTIFICATION_ICON, "")
         notificationBuilder = NotificationCompat.Builder(context, NOTIFICATION_CHANNEL_ID_MISSED)
         notificationBuilder.setChannelId(NOTIFICATION_CHANNEL_ID_MISSED)
         if (notificationIcon.isEmpty() || Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            var smallIcon = context.applicationInfo.icon
-            if (hasVideo) {
-                smallIcon = R.drawable.ic_video
-            } else {
-                if (smallIcon >= 0) {
-                    smallIcon = R.drawable.ic_accept
-                }
-            }
+            var smallIcon = R.drawable.ic_video
             notificationBuilder.setSmallIcon(smallIcon)
         } else {
             val identifier = context.resources.getIdentifier(notificationIcon, "drawable", context.packageName)
@@ -220,7 +203,7 @@ class CallKeepNotificationManager(private val context: Context) {
         if (showCallBackAction) {
             val callBackText = data.getString(EXTRA_CALLKEEP_CALLBACK_TEXT, "")
             val callbackAction: NotificationCompat.Action = NotificationCompat.Action.Builder(
-                    R.drawable.ic_accept,
+                    R.drawable.ic_video,
                     if (TextUtils.isEmpty(callBackText)) context.getString(R.string.text_call_back) else callBackText,
                     getCallbackPendingIntent(notificationId, data)
             ).build()

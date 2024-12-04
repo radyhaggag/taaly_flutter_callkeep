@@ -33,7 +33,6 @@ class CallKeepBroadcastReceiver : BroadcastReceiver() {
         const val EXTRA_CALLKEEP_CONTENT_TITLE = "EXTRA_CALLKEEP_CONTENT_TITLE"
         const val EXTRA_CALLKEEP_APP_NAME = "EXTRA_CALLKEEP_APP_NAME"
         const val EXTRA_CALLKEEP_HANDLE = "EXTRA_CALLKEEP_HANDLE"
-        const val EXTRA_CALLKEEP_HAS_VIDEO = "EXTRA_CALLKEEP_HAS_VIDEO"
         const val EXTRA_CALLKEEP_AVATAR = "EXTRA_CALLKEEP_AVATAR"
         const val EXTRA_CALLKEEP_DURATION = "EXTRA_CALLKEEP_DURATION"
         const val EXTRA_CALLKEEP_ACCEPT_TEXT = "EXTRA_CALLKEEP_ACCEPT_TEXT"
@@ -204,7 +203,6 @@ class CallKeepBroadcastReceiver : BroadcastReceiver() {
             "contentTitle" to getString(EXTRA_CALLKEEP_CONTENT_TITLE, ""),
             "avatar" to getString(EXTRA_CALLKEEP_AVATAR, ""),
             "number" to getString(EXTRA_CALLKEEP_HANDLE, ""),
-            "hasVideo" to getBoolean(EXTRA_CALLKEEP_HAS_VIDEO, false),
             "duration" to getLong(EXTRA_CALLKEEP_DURATION, 0L),
             "acceptText" to getString(EXTRA_CALLKEEP_ACCEPT_TEXT, ""),
             "declineText" to getString(EXTRA_CALLKEEP_DECLINE_TEXT, ""),

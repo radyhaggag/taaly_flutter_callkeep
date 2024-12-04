@@ -15,7 +15,6 @@ data class Data(val args: Map<String, Any?>) {
     var appName: String = (args["appName"] as? String) ?: ""
     var handle: String = (args["handle"] as? String) ?: ""
     var avatar: String = (args["avatar"] as? String) ?: ""
-    var hasVideo: Boolean = (args["hasVideo"] as? Boolean) ?: false
     var duration: Long = (args["duration"] as? Long) ?: ((args["duration"] as? Int)?.toLong() ?: 30000L)
     var acceptText: String = (args["acceptText"] as? String) ?: ""
     var declineText: String = (args["declineText"] as? String) ?: ""
@@ -76,7 +75,6 @@ data class Data(val args: Map<String, Any?>) {
         bundle.putString(CallKeepBroadcastReceiver.EXTRA_CALLKEEP_CONTENT_TITLE, contentTitle)
         bundle.putString(CallKeepBroadcastReceiver.EXTRA_CALLKEEP_HANDLE, handle)
         bundle.putString(CallKeepBroadcastReceiver.EXTRA_CALLKEEP_AVATAR, avatar)
-        bundle.putBoolean(CallKeepBroadcastReceiver.EXTRA_CALLKEEP_HAS_VIDEO, hasVideo)
         bundle.putLong(CallKeepBroadcastReceiver.EXTRA_CALLKEEP_DURATION, duration)
         bundle.putString(CallKeepBroadcastReceiver.EXTRA_CALLKEEP_ACCEPT_TEXT, acceptText)
         bundle.putString(CallKeepBroadcastReceiver.EXTRA_CALLKEEP_DECLINE_TEXT, declineText)
@@ -131,7 +129,6 @@ data class Data(val args: Map<String, Any?>) {
                     bundle.getString(CallKeepBroadcastReceiver.EXTRA_CALLKEEP_HANDLE, "")
             data.avatar =
                     bundle.getString(CallKeepBroadcastReceiver.EXTRA_CALLKEEP_AVATAR, "")
-            data.hasVideo = bundle.getBoolean(CallKeepBroadcastReceiver.EXTRA_CALLKEEP_HAS_VIDEO, false)
             data.duration =
                     bundle.getLong(CallKeepBroadcastReceiver.EXTRA_CALLKEEP_DURATION, 30000L)
             data.acceptText =
