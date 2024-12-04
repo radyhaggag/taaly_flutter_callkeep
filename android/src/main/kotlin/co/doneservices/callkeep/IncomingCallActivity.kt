@@ -179,11 +179,12 @@ class IncomingCallActivity : Activity() {
         }        
     
         // Get the EXTRA_CALLKEEP_EXTRA field as a Bundle or Map
-        val extra = data.getSerializable("EXTRA_CALLKEEP_EXTRA") as? HashMap<String, Any?>)
+        val extra = data?.getSerializable("EXTRA_CALLKEEP_EXTRA") as? HashMap<String, Any?>
         val imageUrl = extra?.get("image") as? String
+        
         Log.d("CallKeep", "Image URL: $imageUrl")
 
-        if (!avatarUrl.isNullOrEmpty()) {
+        if (!imageUrl.isNullOrEmpty()) {
             Picasso.get()
                 .load(imageUrl)
                 .placeholder(R.drawable.user_placeholder)
