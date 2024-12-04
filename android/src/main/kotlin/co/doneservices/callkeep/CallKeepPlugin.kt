@@ -122,7 +122,7 @@ class CallKeepPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
     }
 
 
-    override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
+    override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result<Any>) {
         try {
             when (call.method) {
                 "displayIncomingCall" -> {
