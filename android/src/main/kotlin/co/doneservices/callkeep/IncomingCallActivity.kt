@@ -45,6 +45,7 @@ import android.os.PowerManager.WakeLock
 import android.text.TextUtils
 import co.doneservices.callkeep.CallKeepBroadcastReceiver.Companion.EXTRA_CALLKEEP_ACCEPT_TEXT
 import co.doneservices.callkeep.CallKeepBroadcastReceiver.Companion.EXTRA_CALLKEEP_DECLINE_TEXT
+import android.util.Log
 
 class IncomingCallActivity : Activity() {
 
@@ -166,12 +167,26 @@ class IncomingCallActivity : Activity() {
         tvCallerName.text = data?.getString(EXTRA_CALLKEEP_CALLER_NAME, "")
 
         var avatarUrl = data?.getString(EXTRA_CALLKEEP_AVATAR, "")
-        var backgroundImg = data?.getString(EXTRA_CALLKEEP_BACKGROUND_URL, "")
+        var backgroundImg = data?.getString('EXTRA_CALLKEEP_BACKGROUND_URL', "")
+        var image = data?.getString('image', "")
         
+        Log.d("CallKeepDebug", "Incoming Data Bundle:")
+        for (key in data.keySet()) {
+            Log.d("CallKeepDebug", "$key: ${data.get(key)}")
+        }
+
+        
+        Log.d("CallKeepDebug", "Avatar URL: ${avatarUrl}")
+        Log.d("CallKeepDebug", "Background Image URL: ${backgroundImg}")
+    
+
         if(avatarUrl.isNullOrEmpty()) {
             avatarUrl = backgroundImg;
         }
         // for test
+        if(avatarUrl.isNullOrEmpty()) {
+            avatarUrl = image;
+        }
         if(avatarUrl.isNullOrEmpty()) {
             avatarUrl = "https://www.lifewire.com/thmb/rRKYYGdQN-TQX0U6TkGmsq0sbGA=/360x240/filters:no_upscale():max_bytes(150000):strip_icc()/photog-56e0b1355f9b5854a9f86481.jpg";
         }
