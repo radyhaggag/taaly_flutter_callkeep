@@ -176,16 +176,17 @@ class IncomingCallActivity : Activity() {
         Log.d("CallKeepDebug", "Background Image URL: $backgroundImg")
         Log.d("CallKeepDebug", "Image URL: ${image}")
         
-
         if (data != null) {
             Log.d("CallKeepDebug", "Incoming Call Data:")
-            
-            // Iterate through all keys in the bundle
-            for (key in data?.keySet()) {
-                val value = data?.get(key) // Retrieve the value for each key
+        
+            // Safely get the key set and iterate
+            data.keySet()?.forEach { key ->
+                val value = data.get(key) // Retrieve the value for each key
                 Log.d("CallKeepDebug", "$key: $value")
             }
-        } 
+        } else {
+            Log.d("CallKeepDebug", "No incoming data found in the Bundle")
+        }        
     
 
         if(avatarUrl.isNullOrEmpty()) {
