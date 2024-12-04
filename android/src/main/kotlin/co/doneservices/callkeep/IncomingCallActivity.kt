@@ -45,7 +45,6 @@ import android.os.PowerManager.WakeLock
 import android.text.TextUtils
 import co.doneservices.callkeep.CallKeepBroadcastReceiver.Companion.EXTRA_CALLKEEP_ACCEPT_TEXT
 import co.doneservices.callkeep.CallKeepBroadcastReceiver.Companion.EXTRA_CALLKEEP_DECLINE_TEXT
-import com.bumptech.glide.Glide
 
 class IncomingCallActivity : Activity() {
 
@@ -173,7 +172,7 @@ class IncomingCallActivity : Activity() {
             Picasso.get()
                 .load(avatarUrl)
                 .placeholder(R.drawable.user_placeholder)
-                .error(R.drawable.user_placeholder_error)
+                .error(R.drawable.user_placeholder)
                 .into(callerImage);
         } else {
             callerImage.setImageResource(R.drawable.user_placeholder) // Fallback if URL is empty
