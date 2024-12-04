@@ -45,6 +45,7 @@ import android.os.PowerManager.WakeLock
 import android.text.TextUtils
 import co.doneservices.callkeep.CallKeepBroadcastReceiver.Companion.EXTRA_CALLKEEP_ACCEPT_TEXT
 import co.doneservices.callkeep.CallKeepBroadcastReceiver.Companion.EXTRA_CALLKEEP_DECLINE_TEXT
+import com.bumptech.glide.Glide
 
 class IncomingCallActivity : Activity() {
 
@@ -80,8 +81,7 @@ class IncomingCallActivity : Activity() {
     private var endedCallKeepBroadcastReceiver = EndedCallKeepBroadcastReceiver()
 
     private lateinit var tvCallerName: TextView
-    private lateinit var tvCallHeader: TextView
-
+    private lateinit var callerImage: CircleImageView
     private lateinit var btnAnswer: LinearLayout
     private lateinit var btnDecline: LinearLayout
 
@@ -165,7 +165,19 @@ class IncomingCallActivity : Activity() {
         if (data == null) finish()
 
         tvCallerName.text = data?.getString(EXTRA_CALLKEEP_CALLER_NAME, "")
-        tvCallHeader.text = data?.getString(EXTRA_CALLKEEP_HANDLE, "")
+
+        val avatarUrl = intent.extras?.getString(EXTRA_CALLKEEP_AVATAR)
+
+
+        if (!avatarUrl.isNullOrEmpty()) {
+            Picasso.get()
+                .load(avatarUrl)
+                .placeholder(R.drawable.user_placeholder)
+                .error(R.drawable.user_placeholder_error)
+                .into(callerImage);
+        } else {
+            callerImage.setImageResource(R.drawable.user_placeholder) // Fallback if URL is empty
+        }
 
         val duration = data?.getLong(EXTRA_CALLKEEP_DURATION, 0L) ?: 0L
         wakeLockRequest(duration)
@@ -193,8 +205,7 @@ class IncomingCallActivity : Activity() {
 
     private fun initView() {
         tvCallerName = findViewById(R.id.tvCallerName)
-        tvCallHeader = findViewById(R.id.tvCallHeader)
-
+        callerImage = findViewById(R.id.callerImage)
         btnAnswer = findViewById(R.id.btnAnswer)
         btnDecline = findViewById(R.id.btnDecline)
 

@@ -4,6 +4,6 @@
     <string name="decline_text">Afwijzen</string>
     <string name="text_missed_call">Gemiste oproep</string>
     <string name="text_call_back">Terugbellen</string>
-    <string name="call_header">Oproep van CallKeep</string>
     <string name="app_logo">Taaly app logo</string>
+    <string name="call_description">Videobellen op Taaly...</string>
 </resources>

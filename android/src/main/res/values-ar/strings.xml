@@ -4,6 +4,6 @@
     <string name="decline_text">رفض</string>
     <string name="text_missed_call">مكالمة فائتة</string>
     <string name="text_call_back">إعادة الاتصال</string>
-    <string name="call_header">مكالمة من CallKeep</string>
     <string name="app_logo">شعار تطبيق Taaly</string>
+    <string name="call_description">مكالمة الفيديو على Taaly...</string>
 </resources>
