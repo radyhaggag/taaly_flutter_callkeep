@@ -71,7 +71,6 @@ class IncomingCallActivity : Activity() {
 
     private lateinit var tvCallerName: TextView
     private lateinit var tvCallHeader: TextView
-    private lateinit var ivLogo: ImageView
 
     private lateinit var btnAnswer: Button
 
@@ -160,15 +159,6 @@ class IncomingCallActivity : Activity() {
         btnAnswer.text = data?.getString(EXTRA_CALLKEEP_ACCEPT_TEXT, "")
         btnDecline.text = data?.getString(EXTRA_CALLKEEP_DECLINE_TEXT, "")
 
-
-        val logo = data?.getString(EXTRA_CALLKEEP_LOGO, "")
-        if(logo?.isNotEmpty() == true){
-            val identifier = this.resources.getIdentifier(logo, "drawable", this.packageName)
-            ivLogo.setImageResource(identifier)
-        }
-        ivLogo.visibility = if (logo?.isNotEmpty() == true) View.VISIBLE else View.INVISIBLE
-
-
         val hasVideo = data?.getBoolean(EXTRA_CALLKEEP_HAS_VIDEO, false) ?: false
         if (hasVideo) {
             val top = getResources().getDrawable(R.drawable.ic_video);
@@ -201,7 +191,6 @@ class IncomingCallActivity : Activity() {
     private fun initView() {
         tvCallerName = findViewById(R.id.tvCallerName)
         tvCallHeader = findViewById(R.id.tvCallHeader)
-        ivLogo = findViewById(R.id.ivLogo)
 
         btnAnswer = findViewById(R.id.btnAnswer)
         btnDecline = findViewById(R.id.btnDecline)

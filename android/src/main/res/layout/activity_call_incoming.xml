@@ -65,7 +65,7 @@
 
     <!-- Accept Button -->
     <LinearLayout
-        android:id="@+id/btnAccept"
+        android:id="@+id/btnAnswer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
