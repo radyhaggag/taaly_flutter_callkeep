@@ -164,20 +164,28 @@ class IncomingCallActivity : Activity() {
         val data = intent.extras?.getBundle(EXTRA_CALLKEEP_INCOMING_DATA)
         if (data == null) finish()
 
-        tvCallerName.text = data?.getString(EXTRA_CALLKEEP_CALLER_NAME, "")
-
-        var avatarUrl = data?.getString(EXTRA_CALLKEEP_AVATAR, "")
-        var backgroundImg = data?.getString('EXTRA_CALLKEEP_BACKGROUND_URL', "")
-        var image = data?.getString('image', "")
-        
-        Log.d("CallKeepDebug", "Incoming Data Bundle:")
-        for (key in data.keySet()) {
-            Log.d("CallKeepDebug", "$key: ${data.get(key)}")
+        tvCallerName.text = data?.getString("EXTRA_CALLKEEP_CALLER_NAME", "")
+        if (data != null) {
+            
         }
-
+        var avatarUrl = data?.getString("EXTRA_CALLKEEP_AVATAR", "")
+        var backgroundImg = data?.getString("EXTRA_CALLKEEP_BACKGROUND_URL", "")
+        var image = data?.getString("image", "")
         
-        Log.d("CallKeepDebug", "Avatar URL: ${avatarUrl}")
-        Log.d("CallKeepDebug", "Background Image URL: ${backgroundImg}")
+        Log.d("CallKeepDebug", "Avatar URL: $avatarUrl")
+        Log.d("CallKeepDebug", "Background Image URL: $backgroundImg")
+        Log.d("CallKeepDebug", "Image URL: ${image}")
+        
+
+        if (data != null) {
+            Log.d("CallKeepDebug", "Incoming Call Data:")
+            
+            // Iterate through all keys in the bundle
+            for (key in data?.keySet()) {
+                val value = data?.get(key) // Retrieve the value for each key
+                Log.d("CallKeepDebug", "$key: $value")
+            }
+        } 
     
 
         if(avatarUrl.isNullOrEmpty()) {
