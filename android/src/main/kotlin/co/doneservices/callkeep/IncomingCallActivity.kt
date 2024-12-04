@@ -165,19 +165,9 @@ class IncomingCallActivity : Activity() {
         if (data == null) finish()
 
         tvCallerName.text = data?.getString("EXTRA_CALLKEEP_CALLER_NAME", "")
+                
         if (data != null) {
-            
-        }
-        var avatarUrl = data?.getString("EXTRA_CALLKEEP_AVATAR", "")
-        var backgroundImg = data?.getString("EXTRA_CALLKEEP_BACKGROUND_URL", "")
-        var image = data?.getString("image", "")
-        
-        Log.d("CallKeepDebug", "Avatar URL: $avatarUrl")
-        Log.d("CallKeepDebug", "Background Image URL: $backgroundImg")
-        Log.d("CallKeepDebug", "Image URL: ${image}")
-        
-        if (data != null) {
-            Log.d("CallKeepDebug", "Incoming Call Data:")
+            Log.d("CallKeep", "Incoming Call Data:")
         
             // Safely get the key set and iterate
             data.keySet()?.forEach { key ->
@@ -188,22 +178,14 @@ class IncomingCallActivity : Activity() {
             Log.d("CallKeepDebug", "No incoming data found in the Bundle")
         }        
     
-
-        if(avatarUrl.isNullOrEmpty()) {
-            avatarUrl = backgroundImg;
-        }
-        // for test
-        if(avatarUrl.isNullOrEmpty()) {
-            avatarUrl = image;
-        }
-        if(avatarUrl.isNullOrEmpty()) {
-            avatarUrl = "https://www.lifewire.com/thmb/rRKYYGdQN-TQX0U6TkGmsq0sbGA=/360x240/filters:no_upscale():max_bytes(150000):strip_icc()/photog-56e0b1355f9b5854a9f86481.jpg";
-        }
-
+        // Get the EXTRA_CALLKEEP_EXTRA field as a Bundle or Map
+        val extra = data.getSerializable("EXTRA_CALLKEEP_EXTRA") as? HashMap<String, Any?>)
+        val imageUrl = extra?.get("image") as? String
+        Log.d("CallKeep", "Image URL: $imageUrl")
 
         if (!avatarUrl.isNullOrEmpty()) {
             Picasso.get()
-                .load(avatarUrl)
+                .load(imageUrl)
                 .placeholder(R.drawable.user_placeholder)
                 .error(R.drawable.user_placeholder)
                 .into(callerImage);
