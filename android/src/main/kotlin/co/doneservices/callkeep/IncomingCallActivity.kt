@@ -72,9 +72,11 @@ class IncomingCallActivity : Activity() {
     private lateinit var tvCallerName: TextView
     private lateinit var tvCallHeader: TextView
 
-    private lateinit var btnAnswer: Button
+    private lateinit var btnAnswer: LinearLayout
+    private lateinit var btnDecline: LinearLayout
 
-    private lateinit var btnDecline: Button
+    private lateinit var textAnswer: TextView
+    private lateinit var textDecline: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -156,8 +158,8 @@ class IncomingCallActivity : Activity() {
 
         tvCallerName.text = data?.getString(EXTRA_CALLKEEP_CALLER_NAME, "")
         tvCallHeader.text = data?.getString(EXTRA_CALLKEEP_HANDLE, "")
-        btnAnswer.text = data?.getString(EXTRA_CALLKEEP_ACCEPT_TEXT, "")
-        btnDecline.text = data?.getString(EXTRA_CALLKEEP_DECLINE_TEXT, "")
+        textAnswer.text = data?.getString(EXTRA_CALLKEEP_ACCEPT_TEXT, "")
+        textDecline.text = data?.getString(EXTRA_CALLKEEP_DECLINE_TEXT, "")
 
         val hasVideo = data?.getBoolean(EXTRA_CALLKEEP_HAS_VIDEO, false) ?: false
         if (hasVideo) {
@@ -194,6 +196,10 @@ class IncomingCallActivity : Activity() {
 
         btnAnswer = findViewById(R.id.btnAnswer)
         btnDecline = findViewById(R.id.btnDecline)
+
+        textAnswer = findViewById(R.id.textAnswer)
+        textDecline = findViewById(R.id.textDecline)
+
         animateAcceptCall()
 
         btnAnswer.setOnClickListener {

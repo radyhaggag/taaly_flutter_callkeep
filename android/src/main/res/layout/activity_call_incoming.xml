@@ -86,6 +86,7 @@
 
         <!-- Text label -->
         <TextView
+            android:id="@+id/textAnswer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -118,6 +119,7 @@
 
         <!-- Text label -->
         <TextView
+            android:id="@+id/textDecline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
