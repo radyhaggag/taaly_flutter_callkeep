@@ -85,8 +85,6 @@ class IncomingCallActivity : Activity() {
     private lateinit var btnAnswer: LinearLayout
     private lateinit var btnDecline: LinearLayout
 
-    private lateinit var textAnswer: TextView
-    private lateinit var textDecline: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -168,8 +166,6 @@ class IncomingCallActivity : Activity() {
 
         tvCallerName.text = data?.getString(EXTRA_CALLKEEP_CALLER_NAME, "")
         tvCallHeader.text = data?.getString(EXTRA_CALLKEEP_HANDLE, "")
-        textAnswer.text = data?.getString(EXTRA_CALLKEEP_ACCEPT_TEXT, "")
-        textDecline.text = data?.getString(EXTRA_CALLKEEP_DECLINE_TEXT, "")
 
         val duration = data?.getLong(EXTRA_CALLKEEP_DURATION, 0L) ?: 0L
         wakeLockRequest(duration)
@@ -201,9 +197,6 @@ class IncomingCallActivity : Activity() {
 
         btnAnswer = findViewById(R.id.btnAnswer)
         btnDecline = findViewById(R.id.btnDecline)
-
-        textAnswer = findViewById(R.id.textAnswer)
-        textDecline = findViewById(R.id.textDecline)
 
         animateAcceptCall()
 

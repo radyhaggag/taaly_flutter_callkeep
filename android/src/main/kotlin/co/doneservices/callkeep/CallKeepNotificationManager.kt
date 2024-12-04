@@ -148,7 +148,7 @@ class CallKeepNotificationManager(private val context: Context) {
         val acceptText = data.getString(EXTRA_CALLKEEP_ACCEPT_TEXT, "")
         val acceptAction: NotificationCompat.Action = NotificationCompat.Action.Builder(
                 R.drawable.ic_video,
-                if (TextUtils.isEmpty(declineText)) context.getString(R.string.accept_text) else acceptText,
+                if (TextUtils.isEmpty(acceptText)) context.getString(R.string.accept_text) else acceptText,
                 getAcceptPendingIntent(notificationId, data)
         ).build()
         notificationBuilder.addAction(acceptAction)
